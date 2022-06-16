@@ -11,6 +11,11 @@ public class Enemy_Manager : MonoBehaviour //利 罚待 积己
 
     private List<GameObject> gameobject = new List<GameObject>();
 
+    public GameObject[] GetEnemyArray()
+    {
+        return enemys;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +24,6 @@ public class Enemy_Manager : MonoBehaviour //利 罚待 积己
         for(int i=0;i<count;i++)
         {
             Spawn();
-            //Debug.Log("I'm out");
         }
 
         area.enabled = false;
@@ -38,8 +42,8 @@ public class Enemy_Manager : MonoBehaviour //利 罚待 积己
         GameObject selectedPrefab = enemys[selection];
 
         Vector3 spawnPos = GetRandomPosition();
+        GameObject instance = Instantiate(selectedPrefab, spawnPos, selectedPrefab.transform.rotation);
 
-        GameObject instance = Instantiate(selectedPrefab, spawnPos, Quaternion.identity);
         gameobject.Add(instance);
     }
 
